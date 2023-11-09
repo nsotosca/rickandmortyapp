@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.card-character__wrapper {
+  @apply flex flex-col overflow-hidden bg-gray-800 rounded-lg shadow-sm cursor-pointer h-max hover:shadow-lg;
+}
+
+.card-character__details {
+  @apply flex flex-col gap-2 p-4;
+}
+
+.details__title {
+  @apply p-1 text-lg font-bold text-zinc-50 hover:text-yellow-400 hover:cursor-pointer;
+}
+
+.header__status {
+  @apply flex self-center gap-1 px-2 py-1 text-xs rounded-2xl w-min text-zinc-50;
+}
+
+.header__status::before {
+  @apply rounded-lg w-1 h-1 inline-block self-center content-[''];
+  padding: 5px;
+}
+
+.header__status--alive::before {
+  @apply bg-green-500;
+}
+
+.header__status--dead::before {
+  @apply bg-red-500;
+}
+
+.header__status--unknown::before {
+  @apply bg-yellow-500;
+}
+
+.footer__information {
+  @apply px-1 py-1 font-light text-gray-400;
+}
