@@ -10,8 +10,7 @@ export const getCharacters = (page?: string): Promise<ICharacters> => {
       .then((res) => res.json())
       .then((res) => resolve(res))
       .catch((error) => {
-        console.log(error);
-        reject(new Error("Hubo un error intente más tarde."));
+        reject(error);
       });
   });
 };
@@ -22,8 +21,7 @@ export const getCharacter = (id: string): Promise<ICharacter> => {
       .then((res) => res.json())
       .then((res) => resolve(res))
       .catch((error) => {
-        console.log(error);
-        reject(new Error("Hubo un error intente más tarde."));
+        reject(error);
       });
   });
 };

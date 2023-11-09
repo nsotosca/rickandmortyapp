@@ -15,6 +15,9 @@ const Character = () => {
     setIsLoading(true);
     getCharacter(id)
       .then((res) => setCharacter(res))
+      .catch((error) => {
+        throw new Error(error);
+      })
       .finally(() => setIsLoading(false));
   }, []);
 
@@ -27,6 +30,7 @@ const Character = () => {
       ) : (
         <>
           <img
+            loading="lazy"
             src={character?.image}
             alt={character?.name}
             className="align-middle border-8 rounded-full w-96 border-slate-500"

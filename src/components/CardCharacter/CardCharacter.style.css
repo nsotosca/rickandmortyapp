@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .card-character__wrapper {
-  @apply flex flex-col overflow-hidden bg-gray-800 rounded-lg shadow-sm cursor-pointer h-max hover:shadow-lg;
+  @apply flex flex-col overflow-hidden bg-gray-800 rounded-lg shadow-sm cursor-pointer h-max hover:shadow-lg w-72;
 }
 
 .card-character__details {

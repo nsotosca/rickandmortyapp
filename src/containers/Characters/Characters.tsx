@@ -11,7 +11,7 @@ const getParamsFromUrl = (url: string, param: string) => {
 };
 
 const Characters = () => {
-  const { page } = useParams();
+  const { page = "1" } = useParams();
   const [characters, setCharacters] = useState<ICharacters | null>();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -19,13 +19,16 @@ const Characters = () => {
   const nextPage = getParamsFromUrl(characters?.info.next ?? "", "?page=");
 
   useEffect(() => {
-    if (page && isNaN(parseInt(page))) {
-      throw new Error("Error");
+    if (isNaN(parseInt(page))) {
+      throw new Error("Page not found");
     }
 
     setIsLoading(true);
     getCharacters(page)
       .then((res) => setCharacters(res))
+      .catch((error) => {
+        throw new Error(error);
+      })
       .finally(() => setIsLoading(false));
   }, [page]);
 
@@ -41,21 +44,13 @@ const Characters = () => {
           </span>
         ) : (
           <>
-            <Pagination
-              page={page ?? "1"}
-              prevPage={prevPage}
-              nextPage={nextPage}
-            />
+            <Pagination page={page} prevPage={prevPage} nextPage={nextPage} />
             <div className="flex flex-wrap justify-center gap-4">
               {characters?.results.map((character) => (
                 <CardCharacter key={character.id} character={character} />
               ))}
             </div>
-            <Pagination
-              page={page ?? "1"}
-              prevPage={prevPage}
-              nextPage={nextPage}
-            />
+            <Pagination page={page} prevPage={prevPage} nextPage={nextPage} />
           </>
         )}
       </div>
