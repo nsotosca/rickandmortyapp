@@ -19,7 +19,7 @@ const Characters = () => {
   const nextPage = getParamsFromUrl(characters?.info.next ?? "", "?page=");
 
   useEffect(() => {
-    if (isNaN(parseInt(page))) {
+    if (isNaN(Number(page))) {
       throw new Error("Page not found");
     }
 
